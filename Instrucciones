@@ -1,0 +1,3 @@
+Para compilar:
+gcc combinacionedd.c functionsprog.h structsprog.h  -o app
+
