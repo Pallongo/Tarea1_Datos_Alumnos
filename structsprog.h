@@ -17,11 +17,15 @@ typedef struct
 
 struct Alumno
 {
-  char *RolUSM;
-  char *NombreApellido;
-  char *Apellido;
-  char *Ingreso;
+  char RolUSM[20];
+  char NombreApellido[20];
+  char Apellido[20];
+  char Ingreso[6];
   int aproboTodoPrimerSemestre; // 0 = reprobado
   int aproboTodoSegundoSemestre; // 1 = aprobado
   struct Alumno *nextAlumno;
+};
+
+struct ListaAlumnos{
+  struct Alumno *head;
 };
