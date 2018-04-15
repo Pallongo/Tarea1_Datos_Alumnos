@@ -1,3 +1,5 @@
 Para compilar:
 gcc combinacionedd.c functionsprog.h structsprog.h  -o app
 
+
+gcc mainprogram.c funcionesP.h structsprog.h  -o appo
