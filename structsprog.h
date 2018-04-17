@@ -2,6 +2,7 @@ typedef struct {
   char sigla[7];
   int semestre; /* 1er o 2do semestre*/
 } curso;
+
 typedef struct {
   char rolEstudiante[12];
   char siglaCurso[7];
@@ -14,6 +15,11 @@ typedef struct
   char Sigla[7];
   int NotaRamo;
 } Ramo;
+
+struct listaRamos
+{
+  Ramo *head;
+};
 
 struct Alumno
 {

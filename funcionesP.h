@@ -3,6 +3,8 @@
 #include "structsprog.h"
 #include <string.h>
 
+//(< y >)
+
 
 struct ListaAlumnos *crearListaDeAlumnos()
 {
@@ -112,4 +114,88 @@ void loadAlumnosData(char *TextFile, int largo, struct ListaAlumnos *listaL)
   }
 
   fclose(fp);
+}
+
+/*
+
+BINARY WORK
+
+
+*/
+
+
+void displayNotasDat(int numAlumno)
+{
+  int ch;
+  char bufferSize[24];
+  char notaObtenida[4];
+  char nombreRamo[8];
+  int NuMnotas;
+
+  FILE *fp = fopen("notas.dat", "rb");
+
+
+  size_t fileSize = fread(bufferSize, sizeof(char), 24, fp);
+
+  printf("\nFile Size for testing: %zu bytes.\n", fileSize);
+  printf("Size of each item in bytes: %zu\n", sizeof(char));
+
+  int contador = 0;
+  while (contador < numAlumno)
+  {
+
+    int contadorDeEspacio = 0;
+    for (int i = 0; i < (fileSize / sizeof(char)); i++)
+    {
+      printf("%c", bufferSize[i+1]);
+      contadorDeEspacio++;
+      if(contadorDeEspacio==15)
+      {
+        printf(" ");
+      }
+    }
+
+    //fread(bufferSize, 2,2,fp);
+    printf(" ");
+
+    for (int i = 0; i < 1; i++)
+    {
+      printf("%d", bufferSize[i]);
+    }
+    printf("\n");
+    //fread(bufferSize, sizeof(char), 1, fp);
+    //fseek(fp, 24, SEEK_CUR);
+    fileSize = fread(bufferSize, sizeof(char), 24, fp);
+
+    contador++;
+  }
+  fclose(fp);
+}
+
+
+void displayCursosDat()
+{
+  FILE *fp = fopen("cursos.dat", "rb");
+  char bufferSize[12];
+  //size_t fileSize = fread(bufferSize, sizeof(char), 34, fp);
+
+  while(!feof(fp))
+  {
+    fread(bufferSize, sizeof(char), 12, fp);
+    for (int i = 0; i < 11; i++)
+    {
+      printf("%c", bufferSize[i+1]);
+    }
+    printf(" ");
+  }
+
+
+}
+
+
+struct listaRamos *crearListaDeRamos()
+{
+  struct listaRamos* rm = (struct listaRamos*)malloc(sizeof(struct listaRamos));
+  rm->head = NULL;
+  return rm;
 }
